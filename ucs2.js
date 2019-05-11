@@ -36,9 +36,9 @@ function ucs2Decode(string) {
        
   while (++index < length) {
     var value = string.charCodeAt(index);
-    if (value >= 0xD800 && value <= 0xDBFF && index < length) {
+    if (value >= 0xD800 && value <= 0xDBFF) {
       var next = string.charCodeAt(++index);
-      if (next >= 0xDC00 && next <= 0xDFFF) {
+      if (next >= 0xDC00 && next <= 0xDFFF && index < length) {
         result.push((((value & 0x3FF) << 10) | (next & 0x3FF)) + 0x10000);
       } else {
         index -= 1;
